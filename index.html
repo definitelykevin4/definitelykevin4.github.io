@@ -17,25 +17,6 @@
         .bg-gold { background-color: #FFD700; }
         .border-gold { border-color: #FFD700; }
         .hover\:bg-darkgold:hover { background-color: #CCAA00; }
-        
-        /* Utility class to make links look like buttons */
-        .btn-gold {
-            display: block;
-            text-align: center;
-            padding-top: 0.5rem; /* py-2 */
-            padding-bottom: 0.5rem; /* py-2 */
-            margin-top: 1rem; /* mt-4 */
-            width: 100%;
-            background-color: #FFD700;
-            color: #111827; /* gray-900 */
-            border-radius: 0.5rem;
-            font-weight: 700;
-            transition-duration: 200ms;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
-        }
-        .btn-gold:hover {
-            background-color: #CCAA00; /* darkgold equivalent */
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen">
@@ -106,8 +87,9 @@
                     <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2">
                         DefinitelyKevin: World-Builder & Sci-Fi Author
                     </h2>
+                    <!-- BOLDING CORRECTED HERE -->
                     <p class="text-xl text-gray-300">
-                        Hello. I am **DefinitelyKevin**, a dedicated writer and architect of long-form narrative. My work centers on the intersection of mythology, advanced science fiction, and high-stakes conflict, focusing on character-driven epics set across vast, detailed universes.
+                        Hello. I am <strong>DefinitelyKevin</strong>, a dedicated writer and architect of long-form narrative. My work centers on the intersection of mythology, advanced science fiction, and high-stakes conflict, focusing on character-driven epics set across vast, detailed universes.
                     </p>
                     <p class="text-lg text-gray-400">
                         My primary project is a commitment to a multi-volume saga, an endeavor to master complex character development, millennia-spanning timelines, and integrated lore. This site serves as a portfolio showcasing my original concepts, writing range, and commitment to the craft of ambitious, serialized storytelling.
@@ -143,19 +125,19 @@
                     <h3 class="text-2xl font-semibold text-gray-100">The Axiom Protocol</h3>
                     <p class="text-sm uppercase text-gold font-mono">Original Short Story | 8,000 words</p>
                     <p class="text-gray-400">A tense exploration of a post-human society that governs itself through a purely algorithmic consciousness. This work is part of the original concepts portfolio.</p>
-                    <!-- NEW LINK: Opens in a new tab -->
+                    <!-- EXTERNAL LINK -->
                     <a href="https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_ORIGINAL_URL_1/pub" target="_blank"
-                        class="btn-gold">
-                        View Document (External)
+                        class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
+                        View Document (External Link)
                     </a>
                 </div>
 
-                <!-- Fanfiction Showcase -->
+                <!-- Fanfiction Showcase (Reference Style) -->
                 <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
                     <h3 class="text-2xl font-semibold text-gray-100">The Unspoken Conflict</h3>
                     <p class="text-sm uppercase text-gold font-mono">Fanfiction Series | Ongoing</p>
                     <p class="text-gray-400">An ongoing commitment to a massive, long-form science fiction saga. This demonstrates consistent output, community engagement, and dedication to IP lore.</p>
-                    <!-- EXISTING EXTERNAL LINK: No changes needed -->
+                    <!-- EXISTING EXTERNAL LINK -->
                     <a href="https://yourfanficlink.com" target="_blank"
                        class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
                         Read Online (External Link)
@@ -179,11 +161,11 @@
             </p>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Methodology 1: The Time System Link -->
+                <!-- Methodology 1: The Time System Link (Uses Gold background as it is a specific, unique project link) -->
                 <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
                     <h3 class="text-2xl font-semibold text-gray-100">Unique Chronological System Design</h3>
                     <p class="text-gray-400">A demonstration of deep-lore development, featuring a completely original, interactive time system designed to track millennia of events and characters within an expansive science fiction universe.</p>
-                    <!-- EXISTING EXTERNAL LINK: No changes needed -->
+                    <!-- This specific link uses the prominent GOLD button to highlight the interactive project -->
                     <a href="http://definitelykevin4.github.io/time" target="_blank"
                         class="mt-4 w-full block text-center bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
                         View Interactive Time System
@@ -194,10 +176,10 @@
                 <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
                     <h3 class="text-2xl font-semibold text-gray-100">Resource and Political Design</h3>
                     <p class="text-gray-400">A deep dive into creating unique fictional energy sources and political mechanics—exploring origins, scarcity, and socio-political impact on primary civilizations.</p>
-                    <!-- NEW LINK: Opens in a new tab -->
+                    <!-- EXTERNAL LINK -->
                     <a href="https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_LORE_URL_2/pub" target="_blank"
-                            class="btn-gold">
-                        View Technical Document (External)
+                            class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
+                        View Technical Document (External Link)
                     </a>
                 </div>
             </div>
