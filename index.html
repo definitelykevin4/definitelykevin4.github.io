@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DefinitelyKevin | Sci-Fi & Lore Architect</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter as the main font, falling back to a techy monospace style -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        /* Custom gold/yellow classes */
+        .text-gold { color: #FFD700; }
+        .bg-gold { background-color: #FFD700; }
+        .border-gold { border-color: #FFD700; }
+        .hover\:bg-darkgold:hover { background-color: #CCAA00; }
+        /* Style for the iframe modal content */
+        #doc-viewer-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+
+    <!-- Global State for Navigation and Modal -->
+    <script>
+        // Use a simple state object to manage the application view
+        const state = {
+            currentPage: 'about',
+            isModalOpen: false,
+            modalTitle: '',
+            modalUrl: ''
+        };
+
+        // Function to render the correct page view
+        function renderPage() {
+            document.querySelectorAll('.page-section').forEach(section => {
+                if (section.id === state.currentPage + '-page') {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // Update active navigation link
+            document.querySelectorAll('#main-nav a').forEach(link => {
+                link.classList.remove('bg-gold', 'text-gray-900', 'font-semibold');
+                link.classList.add('text-gray-400', 'hover:text-gold');
+                if (link.getAttribute('data-page') === state.currentPage) {
+                    link.classList.add('bg-gold', 'text-gray-900', 'font-semibold');
+                    link.classList.remove('text-gray-400', 'hover:text-gold');
+                }
+            });
+
+            // Handle modal visibility
+            const modal = document.getElementById('doc-viewer-modal');
+            if (state.isModalOpen) {
+                modal.classList.remove('hidden');
+                document.getElementById('modal-title').textContent = state.modalTitle;
+                document.getElementById('doc-viewer-modal-content').innerHTML = `
+                    <iframe src="${state.modalUrl}" frameborder="0" allowfullscreen></iframe>
+                `;
+            } else {
+                modal.classList.add('hidden');
+                document.getElementById('doc-viewer-modal-content').innerHTML = ''; // Clear content
+            }
+        }
+
+        // Navigation handler
+        function navigateTo(pageName) {
+            state.currentPage = pageName;
+            renderPage();
+        }
+
+        // Modal handler to open a document
+        function openDocumentModal(title, docUrl) {
+            state.modalTitle = title;
+            state.modalUrl = docUrl;
+            state.isModalOpen = true;
+            renderPage();
+        }
+
+        // Modal handler to close
+        function closeDocumentModal() {
+            state.isModalOpen = false;
+            renderPage();
+        }
+
+        // Initial render on load
+        window.onload = () => {
+            renderPage();
+            console.log("DefinitelyKevin Portfolio loaded. Welcome, Lore Architect!");
+        };
+    </script>
+
+    <!-- Header and Navigation -->
+    <header class="sticky top-0 bg-gray-900/95 backdrop-blur-sm z-50 shadow-lg border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-gold tracking-widest uppercase">
+                DefinitelyKevin
+            </h1>
+            <nav id="main-nav" class="flex space-x-4 sm:space-x-6">
+                <a href="#" data-page="about" onclick="navigateTo('about')" class="p-2 rounded-lg transition duration-200">About</a>
+                <a href="#" data-page="original" onclick="navigateTo('original')" class="p-2 rounded-lg transition duration-200">Original Works</a>
+                <a href="#" data-page="other" onclick="navigateTo('other')" class="p-2 rounded-lg transition duration-200">Lore Architect</a>
+                <a href="#" data-page="contact" onclick="navigateTo('contact')" class="p-2 rounded-lg transition duration-200">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- ABOUT ME PAGE -->
+        <section id="about-page" class="page-section transition-opacity duration-500">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="md:col-span-2 space-y-6">
+                    <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2">
+                        DefinitelyKevin: World-Builder & Sci-Fi Author
+                    </h2>
+                    <p class="text-xl text-gray-300">
+                        Hello. I am **DefinitelyKevin**, a dedicated writer and architect of long-form narrative. My work centers on the intersection of mythology, advanced science fiction, and high-stakes conflict, focusing on character-driven epics set across vast, detailed universes.
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        My primary project is a commitment to a multi-volume saga, an endeavor to master complex character development, millennia-spanning timelines, and integrated lore. This site serves as a portfolio showcasing my original concepts, writing range, and commitment to the craft of ambitious, serialized storytelling.
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        Currently seeking collaboration and representation for original sci-fi properties.
+                    </p>
+                </div>
+                <div class="md:col-span-1 border-2 border-gold rounded-xl p-6 bg-gray-800 shadow-xl space-y-4">
+                    <h3 class="text-2xl font-bold text-gold uppercase">Focus Pillars</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Long-Form Narrative Mastery</li>
+                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Integrated World-Building</li>
+                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Hard Sci-Fi & Lore Creation</li>
+                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Character-Driven Epics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORIGINAL WORKS PAGE -->
+        <section id="original-page" class="page-section hidden transition-opacity duration-500">
+            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
+                Original Works Portfolio
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                A selection of original short fiction and novel excerpts demonstrating narrative range and thematic focus, separate from any existing licensed IP.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Short Story 1: Replace this with your first original work -->
+                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
+                    <h3 class="text-2xl font-semibold text-gray-100">The Axiom Protocol</h3>
+                    <p class="text-sm uppercase text-gold font-mono">Short Story | 8,000 words</p>
+                    <p class="text-gray-400">A tense exploration of a post-human society that governs itself through a purely algorithmic consciousness, forcing a young engineer to choose between order and freedom.</p>
+                    <button onclick="openDocumentModal('The Axiom Protocol', 'https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_ORIGINAL_URL_1/pub')"
+                            class="mt-4 w-full bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
+                        View Document
+                    </button>
+                </div>
+
+                <!-- Novel Excerpt 2: Replace this with your second original work -->
+                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
+                    <h3 class="text-2xl font-semibold text-gray-100">Exogenesis: Chapter 1 Preview</h3>
+                    <p class="text-sm uppercase text-gold font-mono">Novel Excerpt | Work-In-Progress</p>
+                    <p class="text-gray-400">The opening of a high-fantasy novel focusing on a dying star and the technologically primitive culture struggling to prevent its collapse, blending magic and astrophysics.</p>
+                    <button onclick="openDocumentModal('Exogenesis: Chapter 1 Preview', 'https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_ORIGINAL_URL_2/pub')"
+                            class="mt-4 w-full bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
+                        View Document
+                    </button>
+                </div>
+
+                <!-- Blank Placeholder -->
+                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 transition duration-300 flex items-center justify-center">
+                    <p class="text-gray-500 font-mono text-center">More Original Concepts Coming Soon...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LORE ARCHITECT PAGE (Other Things) -->
+        <section id="other-page" class="page-section hidden transition-opacity duration-500">
+            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
+                Lore Architect: World-Building Methodology
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                This section showcases the process and rigor behind my expansive storytelling, demonstrating the structural framework required to maintain narrative consistency and thematic depth across large-scale projects.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Methodology 1: The Timeline -->
+                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
+                    <h3 class="text-2xl font-semibold text-gray-100">The Multi-Volume Timeline Solution</h3>
+                    <p class="text-gray-400">A breakdown of how I track thousands of years of fictional history, ensuring internal consistency for a 28-book structure, focusing on macro-level plot distribution.</p>
+                    <button onclick="openDocumentModal('Timeline Methodology', 'https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_LORE_URL_1/pub')"
+                            class="mt-4 w-full bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
+                        View Technical Document
+                    </button>
+                </div>
+
+                <!-- Methodology 2: Thematic Design -->
+                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
+                    <h3 class="text-2xl font-semibold text-gray-100">Designing the Shadow Matter Resource</h3>
+                    <p class="text-gray-400">A deep dive into the creation of a unique fictional energy source—its origins, physics, scarcity, and the socio-political impact it has on the primary civilization (an original concept).</p>
+                    <button onclick="openDocumentModal('Shadow Matter Design Doc', 'https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_LORE_URL_2/pub')"
+                            class="mt-4 w-full bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
+                        View Technical Document
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact-page" class="page-section hidden transition-opacity duration-500">
+            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
+                Connect with DefinitelyKevin
+            </h2>
+            <div class="max-w-xl mx-auto bg-gray-800 rounded-xl p-8 border-2 border-gold/50 space-y-6 shadow-2xl">
+                <p class="text-xl text-gray-300 text-center">
+                    For inquiries regarding literary representation, collaborations, or world-building consultations, please reach out via the channels below.
+                </p>
+
+                <div class="space-y-4">
+                    <a href="mailto:definitelykevin@email.com" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
+                        <span class="text-gold text-2xl mr-3">&#9993;</span>
+                        <span class="text-lg text-gray-100 font-semibold">Email: DefinitelyKevin[at]example.com</span>
+                    </a>
+                    <a href="https://twitter.com/YourKevinAlias" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
+                        <span class="text-gold text-2xl mr-3">X</span>
+                        <span class="text-lg text-gray-100 font-semibold">Social: @YourKevinAlias (Professional)</span>
+                    </a>
+                    <p class="text-sm text-center text-gray-500 pt-4">
+                        Please use professional and concise communication.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- DOCUMENT VIEWER MODAL -->
+    <div id="doc-viewer-modal" class="fixed inset-0 bg-gray-900 bg-opacity-95 hidden z-[99] items-center justify-center p-4" onclick="if(event.target === this) closeDocumentModal()">
+        <div class="bg-gray-800 rounded-xl shadow-2xl w-full h-full max-w-6xl max-h-[90vh] flex flex-col border-2 border-gold/70">
+            <!-- Modal Header -->
+            <div class="p-4 flex justify-between items-center border-b border-gold/50">
+                <h3 id="modal-title" class="text-2xl font-bold text-gold">Document Viewer</h3>
+                <button onclick="closeDocumentModal()" class="text-gray-400 hover:text-gold text-3xl font-mono leading-none transition duration-200">&times;</button>
+            </div>
+            <!-- Modal Body (iFrame will load here) -->
+            <div id="doc-viewer-modal-content" class="flex-grow p-4">
+                <!-- iframe content loads dynamically here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions for the User -->
+    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-10">
+        <p>DefinitelyKevin Portfolio &copy; 2024 | All Original Works are Property of DefinitelyKevin</p>
+    </footer>
+
+</body>
+</html>
