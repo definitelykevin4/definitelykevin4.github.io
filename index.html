@@ -17,25 +17,34 @@
         .bg-gold { background-color: #FFD700; }
         .border-gold { border-color: #FFD700; }
         .hover\:bg-darkgold:hover { background-color: #CCAA00; }
-        /* Style for the iframe modal content */
-        #doc-viewer-modal-content iframe {
+        
+        /* Utility class to make links look like buttons */
+        .btn-gold {
+            display: block;
+            text-align: center;
+            padding-top: 0.5rem; /* py-2 */
+            padding-bottom: 0.5rem; /* py-2 */
+            margin-top: 1rem; /* mt-4 */
             width: 100%;
-            height: 100%;
-            border: none;
+            background-color: #FFD700;
+            color: #111827; /* gray-900 */
             border-radius: 0.5rem;
+            font-weight: 700;
+            transition-duration: 200ms;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+        }
+        .btn-gold:hover {
+            background-color: #CCAA00; /* darkgold equivalent */
         }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen">
 
-    <!-- Global State for Navigation and Modal -->
+    <!-- Global State for Navigation -->
     <script>
         // Use a simple state object to manage the application view
         const state = {
-            currentPage: 'about',
-            isModalOpen: false,
-            modalTitle: '',
-            modalUrl: ''
+            currentPage: 'about'
         };
 
         // Function to render the correct page view
@@ -57,38 +66,11 @@
                     link.classList.remove('text-gray-400', 'hover:text-gold');
                 }
             });
-
-            // Handle modal visibility
-            const modal = document.getElementById('doc-viewer-modal');
-            if (state.isModalOpen) {
-                modal.classList.remove('hidden');
-                document.getElementById('modal-title').textContent = state.modalTitle;
-                document.getElementById('doc-viewer-modal-content').innerHTML = `
-                    <iframe src="${state.modalUrl}" frameborder="0" allowfullscreen></iframe>
-                `;
-            } else {
-                modal.classList.add('hidden');
-                document.getElementById('doc-viewer-modal-content').innerHTML = ''; // Clear content
-            }
         }
 
         // Navigation handler
         function navigateTo(pageName) {
             state.currentPage = pageName;
-            renderPage();
-        }
-
-        // Modal handler to open a document
-        function openDocumentModal(title, docUrl) {
-            state.modalTitle = title;
-            state.modalUrl = docUrl;
-            state.isModalOpen = true;
-            renderPage();
-        }
-
-        // Modal handler to close
-        function closeDocumentModal() {
-            state.isModalOpen = false;
             renderPage();
         }
 
@@ -125,7 +107,7 @@
                         DefinitelyKevin: World-Builder & Sci-Fi Author
                     </h2>
                     <p class="text-xl text-gray-300">
-                        Hello. I am DefinitelyKevin, a dedicated writer and architect of long-form narrative. My work centers on the intersection of mythology, advanced science fiction, and high-stakes conflict, focusing on character-driven epics set across vast, detailed universes.
+                        Hello. I am **DefinitelyKevin**, a dedicated writer and architect of long-form narrative. My work centers on the intersection of mythology, advanced science fiction, and high-stakes conflict, focusing on character-driven epics set across vast, detailed universes.
                     </p>
                     <p class="text-lg text-gray-400">
                         My primary project is a commitment to a multi-volume saga, an endeavor to master complex character development, millennia-spanning timelines, and integrated lore. This site serves as a portfolio showcasing my original concepts, writing range, and commitment to the craft of ambitious, serialized storytelling.
@@ -161,11 +143,11 @@
                     <h3 class="text-2xl font-semibold text-gray-100">The Axiom Protocol</h3>
                     <p class="text-sm uppercase text-gold font-mono">Original Short Story | 8,000 words</p>
                     <p class="text-gray-400">A tense exploration of a post-human society that governs itself through a purely algorithmic consciousness. This work is part of the original concepts portfolio.</p>
-                    <!-- IMPORTANT: Replace this with your published Google Doc link (File > Share > Publish to the Web) -->
-                    <button onclick="openDocumentModal('The Axiom Protocol', 'https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_ORIGINAL_URL_1/pub')"
-                            class="mt-4 w-full bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
-                        View Document
-                    </button>
+                    <!-- NEW LINK: Opens in a new tab -->
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_ORIGINAL_URL_1/pub" target="_blank"
+                        class="btn-gold">
+                        View Document (External)
+                    </a>
                 </div>
 
                 <!-- Fanfiction Showcase -->
@@ -173,7 +155,7 @@
                     <h3 class="text-2xl font-semibold text-gray-100">The Unspoken Conflict</h3>
                     <p class="text-sm uppercase text-gold font-mono">Fanfiction Series | Ongoing</p>
                     <p class="text-gray-400">An ongoing commitment to a massive, long-form science fiction saga. This demonstrates consistent output, community engagement, and dedication to IP lore.</p>
-                    <!-- IMPORTANT: Link to your AO3 or Wattpad page where the fanfic is hosted -->
+                    <!-- EXISTING EXTERNAL LINK: No changes needed -->
                     <a href="https://yourfanficlink.com" target="_blank"
                        class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
                         Read Online (External Link)
@@ -201,7 +183,7 @@
                 <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
                     <h3 class="text-2xl font-semibold text-gray-100">Unique Chronological System Design</h3>
                     <p class="text-gray-400">A demonstration of deep-lore development, featuring a completely original, interactive time system designed to track millennia of events and characters within an expansive science fiction universe.</p>
-                    <!-- LINK BUTTON: This is the specific link to your other GitHub.io project -->
+                    <!-- EXISTING EXTERNAL LINK: No changes needed -->
                     <a href="http://definitelykevin4.github.io/time" target="_blank"
                         class="mt-4 w-full block text-center bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
                         View Interactive Time System
@@ -212,10 +194,11 @@
                 <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
                     <h3 class="text-2xl font-semibold text-gray-100">Resource and Political Design</h3>
                     <p class="text-gray-400">A deep dive into creating unique fictional energy sources and political mechanics—exploring origins, scarcity, and socio-political impact on primary civilizations.</p>
-                    <button onclick="openDocumentModal('Resource and Political Design', 'https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_LORE_URL_2/pub')"
-                            class="mt-4 w-full bg-gold text-gray-900 py-2 rounded-lg font-bold hover:bg-darkgold transition duration-200 shadow-md">
-                        View Technical Document
-                    </button>
+                    <!-- NEW LINK: Opens in a new tab -->
+                    <a href="https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_LORE_URL_2/pub" target="_blank"
+                            class="btn-gold">
+                        View Technical Document (External)
+                    </a>
                 </div>
             </div>
         </section>
@@ -259,21 +242,6 @@
         </section>
 
     </main>
-
-    <!-- DOCUMENT VIEWER MODAL -->
-    <div id="doc-viewer-modal" class="fixed inset-0 bg-gray-900 bg-opacity-95 hidden z-[99] items-center justify-center p-4" onclick="if(event.target === this) closeDocumentModal()">
-        <div class="bg-gray-800 rounded-xl shadow-2xl w-full h-full max-w-6xl max-h-[90vh] flex flex-col border-2 border-gold/70">
-            <!-- Modal Header -->
-            <div class="p-4 flex justify-between items-center border-b border-gold/50">
-                <h3 id="modal-title" class="text-2xl font-bold text-gold">Document Viewer</h3>
-                <button onclick="closeDocumentModal()" class="text-gray-400 hover:text-gold text-3xl font-mono leading-none transition duration-200">&times;</button>
-            </div>
-            <!-- Modal Body (iFrame will load here) -->
-            <div id="doc-viewer-modal-content" class="flex-grow p-4">
-                <!-- iframe content loads dynamically here -->
-            </div>
-        </div>
-    </div>
 
     <!-- Instructions for the User -->
     <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-10">
