@@ -1,188 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DefinitelyKevin | Sci-Fi Writer & Lore Architect</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Inter as the main font, falling back to a techy monospace style -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        }
-        /* Custom gold/yellow classes */
-        .text-gold { color: #FFD700; }
-        .bg-gold { background-color: #FFD700; }
-        .border-gold { border-color: #FFD700; }
-        .hover\:bg-darkgold:hover { background-color: #CCAA00; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DefinitelyKevin | Sci-Fi Writer & Lore Architect</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+body {
+    font-family: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.text-gold { color: #FFD700; }
+.bg-gold { background-color: #FFD700; }
+.border-gold { border-color: #FFD700; }
+.hover\:bg-darkgold:hover { background-color: #CCAA00; }
+</style>
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen">
 
-    <!-- Global State for Navigation -->
-    <script>
-        const state = {
-            currentPage: 'about'
-        };
-
-        function renderPage() {
-            document.querySelectorAll('.page-section').forEach(section => {
-                if (section.id === state.currentPage + '-page') {
-                    section.classList.remove('hidden');
-                } else {
-                    section.classList.add('hidden');
-                }
-            });
-
-            document.querySelectorAll('#main-nav a').forEach(link => {
-                link.classList.remove('bg-gold', 'text-gray-900', 'font-semibold');
-                link.classList.add('text-gray-400', 'hover:text-gold');
-                if (link.getAttribute('data-page') === state.currentPage) {
-                    link.classList.add('bg-gold', 'text-gray-900', 'font-semibold');
-                    link.classList.remove('text-gray-400', 'hover:text-gold');
-                }
-            });
+<script>
+const state = { currentPage: 'about' };
+function renderPage() {
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.id === state.currentPage + '-page' ? section.classList.remove('hidden') : section.classList.add('hidden');
+    });
+    document.querySelectorAll('#main-nav a').forEach(link => {
+        link.classList.remove('bg-gold', 'text-gray-900', 'font-semibold');
+        link.classList.add('text-gray-400', 'hover:text-gold');
+        if (link.getAttribute('data-page') === state.currentPage) {
+            link.classList.add('bg-gold', 'text-gray-900', 'font-semibold');
+            link.classList.remove('text-gray-400', 'hover:text-gold');
         }
+    });
+}
+function navigateTo(pageName) { state.currentPage = pageName; renderPage(); }
+window.onload = renderPage;
+</script>
 
-        function navigateTo(pageName) {
-            state.currentPage = pageName;
-            renderPage();
-        }
+<header class="sticky top-0 bg-gray-900/95 backdrop-blur-sm z-50 shadow-lg border-b border-gold/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-gold tracking-widest uppercase">DefinitelyKevin</h1>
+        <nav id="main-nav" class="flex space-x-4 sm:space-x-6">
+            <a href="#" data-page="about" onclick="navigateTo('about')" class="p-2 rounded-lg transition duration-200">About</a>
+            <a href="#" data-page="works" onclick="navigateTo('works')" class="p-2 rounded-lg transition duration-200">Works</a>
+            <a href="#" data-page="tf-uprising" onclick="navigateTo('tf-uprising')" class="p-2 rounded-lg transition duration-200">Transformers: Uprising</a>
+            <a href="#" data-page="contact" onclick="navigateTo('contact')" class="p-2 rounded-lg transition duration-200">Contact</a>
+        </nav>
+    </div>
+</header>
 
-        window.onload = () => {
-            renderPage();
-            console.log("DefinitelyKevin Portfolio loaded. Welcome, Lore Architect!");
-        };
-    </script>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-    <!-- Header and Navigation -->
-    <header class="sticky top-0 bg-gray-900/95 backdrop-blur-sm z-50 shadow-lg border-b border-gold/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-gold tracking-widest uppercase">
-                DefinitelyKevin
-            </h1>
-            <nav id="main-nav" class="flex space-x-4 sm:space-x-6">
-                <a href="#" data-page="about" onclick="navigateTo('about')" class="p-2 rounded-lg transition duration-200">About</a>
-                <a href="#" data-page="works" onclick="navigateTo('works')" class="p-2 rounded-lg transition duration-200">Works</a>
-                <a href="#" data-page="tf-uprising" onclick="navigateTo('tf-uprising')" class="p-2 rounded-lg transition duration-200">Transformers: Uprising</a>
-                <a href="#" data-page="contact" onclick="navigateTo('contact')" class="p-2 rounded-lg transition duration-200">Contact</a>
-            </nav>
+<!-- ABOUT ME PAGE -->
+<section id="about-page" class="page-section transition-opacity duration-500">
+    <div class="grid md:grid-cols-3 gap-10">
+        <div class="md:col-span-2 space-y-6">
+            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2">
+                DefinitelyKevin: Sci-Fi Writer & Lore Architect
+            </h2>
+            <p class="text-xl text-gray-300">
+                Hello. I am <strong>DefinitelyKevin</strong>, a lifelong nerd of Transformers, Marvel, DC, and Star Wars. I craft long-form sci-fi narratives and expansive universes, blending fandom inspiration with original creativity.
+            </p>
+            <p class="text-lg text-gray-400">
+                My focus is on world-building, character-driven stories, and epic, serialized storytelling. This site showcases my projects, fan-inspired works, and original concepts.
+            </p>
         </div>
-    </header>
+        <div class="md:col-span-1 border-2 border-gold rounded-xl p-6 bg-gray-800 shadow-xl space-y-4">
+            <h3 class="text-2xl font-bold text-gold uppercase">Focus Pillars</h3>
+            <ul class="space-y-3">
+                <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Long-Form Narrative</li>
+                <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Integrated World-Building</li>
+                <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Sci-Fi & Lore Development</li>
+                <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Character-Driven Epics</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<!-- WORKS PAGE -->
+<section id="works-page" class="page-section hidden transition-opacity duration-500">
+    <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
+        Works Portfolio
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Transformers: Uprising -->
+        <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
+            <h3 class="text-2xl font-semibold text-gray-100">Transformers: Uprising Saga</h3>
+            <p class="text-gray-400">28-book saga inspired by Transformers, featuring original characters, factions, and universe-building. Currently in progress.</p>
+            <a href="#tf-uprising-page" class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
+                Explore Saga
+            </a>
+        </div>
 
-        <!-- ABOUT ME PAGE -->
-        <section id="about-page" class="page-section transition-opacity duration-500">
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="md:col-span-2 space-y-6">
-                    <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2">
-                        DefinitelyKevin: Sci-Fi Writer & Lore Architect
-                    </h2>
-                    <p class="text-xl text-gray-300">
-                        Hello. I am <strong>DefinitelyKevin</strong>, a dedicated writer, world-builder, and lifelong nerd of Transformers, Marvel, DC, and Star Wars. I enjoy crafting long-form narrative, exploring mythology, advanced science fiction, and high-stakes conflict, blending my love of fandoms with original creativity.
-                    </p>
-                    <p class="text-lg text-gray-400">
-                        My primary project is a multi-volume saga focused on deep character development, complex timelines, and immersive lore. This portfolio showcases my writing, original concepts, and the methodologies behind large-scale storytelling.
-                    </p>
-                    <p class="text-lg text-gray-400">
-                        Passionate about creativity, storytelling, and exploring the intersections of fandom and original world-building.
-                    </p>
-                </div>
-                <div class="md:col-span-1 border-2 border-gold rounded-xl p-6 bg-gray-800 shadow-xl space-y-4">
-                    <h3 class="text-2xl font-bold text-gold uppercase">Focus Pillars</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Long-Form Narrative Mastery</li>
-                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Integrated World-Building</li>
-                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Hard Sci-Fi & Lore Creation</li>
-                        <li class="flex items-center space-x-3 text-gray-300"><span class="text-gold text-xl">&#9658;</span> Character-Driven Epics</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <!-- Random Original Concept -->
+        <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
+            <h3 class="text-2xl font-semibold text-gray-100">The Axiom Protocol</h3>
+            <p class="text-gray-400">A post-human society governed by AI, exploring morality, technology, and societal collapse in a standalone short story.</p>
+            <a href="https://docs.google.com/document/d/e/2PACX-1vR-G_SAMPLE_ORIGINAL_URL_1/pub" target="_blank"
+               class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
+               View Document
+            </a>
+        </div>
 
-        <!-- WORKS PAGE -->
-        <section id="works-page" class="page-section hidden transition-opacity duration-500">
-            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
-                Works Portfolio
-            </h2>
-            <p class="text-xl text-gray-300 mb-8">
-                Showcasing published fanfiction, original concepts, and major literary projects.
-            </p>
+        <!-- More Coming -->
+        <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 transition duration-300 flex items-center justify-center">
+            <p class="text-gray-500 font-mono text-center">More Original Concepts Coming Soon...</p>
+        </div>
+    </div>
+</section>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Transformers: Uprising Saga -->
-                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 hover:border-gold transition duration-300 space-y-3">
-                    <h3 class="text-2xl font-semibold text-gray-100">Transformers: Uprising Saga</h3>
-                    <p class="text-sm uppercase text-gold font-mono">Original Literary Saga | 28 Books | In Progress</p>
-                    <p class="text-gray-400">A massive 28-book saga inspired by Transformers, blending original concepts and deep lore. This is my flagship project, currently in progress, exploring warfare, character arcs, and universe-building across a sprawling timeline.</p>
-                    <a href="#tf-uprising-page" class="mt-4 w-full block text-center bg-gray-700 text-gold py-2 rounded-lg font-bold hover:bg-darkgold/50 transition duration-200 shadow-md border border-gold">
-                        Explore Saga
-                    </a>
-                </div>
-            </div>
-        </section>
+<!-- TRANSFORMERS: UPRISING PAGE -->
+<section id="tf-uprising-page" class="page-section hidden transition-opacity duration-500">
+    <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
+        Transformers: Uprising
+    </h2>
+    <p class="text-xl text-gray-300 mb-8">
+        Original saga inspired by Transformers. Explore a universe of faction conflicts, deep lore, and intense warfare, all with unique characters and story arcs crafted by me.
+    </p>
 
-        <!-- TRANSFORMERS: UPRISING PAGE -->
-        <section id="tf-uprising-page" class="page-section hidden transition-opacity duration-500">
-            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
-                Transformers: Uprising
-            </h2>
-            <p class="text-xl text-gray-300 mb-8">
-                Inspired by Transformers, this original saga builds a unique universe with in-depth looks at warfare, factions, and lore.
-            </p>
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Book #1 -->
+        <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 transition duration-300 space-y-3">
+            <h3 class="text-2xl font-semibold text-gray-100">Book #1: Transformers: Uprising</h3>
+            <p class="text-gray-400">Introduction to the Uprising Universe. This book establishes the central conflict, introduces key factions, and delves into early battles and politics. World-building, technology, and character arcs are explored in depth. Currently in progress.</p>
+            <button class="mt-4 w-full block text-center bg-gray-600 text-gray-300 py-2 rounded-lg font-bold cursor-not-allowed border border-gray-500">
+                In Progress
+            </button>
+        </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Book #1 -->
-                <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 transition duration-300 space-y-3">
-                    <h3 class="text-2xl font-semibold text-gray-100">Transformers: Uprising - Book #1</h3>
-                    <p class="text-gray-400">Introduction to the Uprising Universe, featuring original concepts inspired by Transformers. Focuses on warfare, faction politics, and the first steps of a sprawling saga. Currently in progress.</p>
-                    <button class="mt-4 w-full block text-center bg-gray-600 text-gray-300 py-2 rounded-lg font-bold cursor-not-allowed border border-gray-500">
-                        In Progress
-                    </button>
-                </div>
-            </div>
-        </section>
+        <!-- Book #2 -->
+        <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 transition duration-300 space-y-3">
+            <h3 class="text-2xl font-semibold text-gray-100">Book #2: Transformers: The War Within</h3>
+            <p class="text-gray-400">Prequel to Book #1, exploring the origins of the war, the rise of factions, and key events that shaped the Uprising Universe. Expands lore and sets the stage for the ongoing saga. Currently in progress.</p>
+            <button class="mt-4 w-full block text-center bg-gray-600 text-gray-300 py-2 rounded-lg font-bold cursor-not-allowed border border-gray-500">
+                In Progress
+            </button>
+        </div>
 
-        <!-- CONTACT PAGE -->
-        <section id="contact-page" class="page-section hidden transition-opacity duration-500">
-            <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
-                Connect with Me
-            </h2>
-            <div class="max-w-xl mx-auto bg-gray-800 rounded-xl p-8 border-2 border-gold/50 space-y-6 shadow-2xl">
-                <p class="text-xl text-gray-300 text-center">
-                    For inquiries regarding literary representation, collaborations, or world-building consultations, please reach out via the professional and social channels below.
-                </p>
+        <!-- More Coming -->
+        <div class="bg-gray-800 rounded-xl p-6 border-2 border-gray-700 transition duration-300 flex items-center justify-center">
+            <p class="text-gray-500 font-mono text-center">More Books Coming Soon...</p>
+        </div>
+    </div>
+</section>
 
-                <div class="space-y-4">
-                    <a href="mailto:definitelykevin4@gmail.com" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
-                        <span class="text-gold text-2xl mr-3">&#9993;</span>
-                        <span class="text-lg text-gray-100 font-semibold">Email: definitelykevin4@gmail.com</span>
-                    </a>
-                    <a href="https://definitelykevin.deviantart.com" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
-                        <span class="text-gold text-2xl mr-3">DA</span>
-                        <span class="text-lg text-gray-100 font-semibold">DeviantArt: @definitelykevin</span>
-                    </a>
-                    <a href="https://instagram.com/definitelykevin4" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
-                        <span class="text-gold text-2xl mr-3">&#128247;</span>
-                        <span class="text-lg text-gray-100 font-semibold">Instagram: @definitelykevin4</span>
-                    </a>
-                    <a href="http://reddit.com/u/definitelykevin4" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
-                        <span class="text-gold text-2xl mr-3">R/</span>
-                        <span class="text-lg text-gray-100 font-semibold">Reddit: u/definitelykevin4</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+<!-- CONTACT PAGE -->
+<section id="contact-page" class="page-section hidden transition-opacity duration-500">
+    <h2 class="text-5xl font-extrabold text-gold tracking-tighter border-b-4 border-gold/50 pb-2 mb-8">
+        Connect with Me
+    </h2>
+    <div class="max-w-xl mx-auto bg-gray-800 rounded-xl p-8 border-2 border-gold/50 space-y-6 shadow-2xl">
+        <p class="text-xl text-gray-300 text-center">
+            For inquiries regarding literary representation, collaborations, or world-building consultations, reach out via the channels below.
+        </p>
 
-    </main>
+        <div class="space-y-4">
+            <a href="mailto:definitelykevin4@gmail.com" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
+                <i class="fas fa-envelope text-gold text-2xl mr-3"></i>
+                <span class="text-lg text-gray-100 font-semibold">Email: definitelykevin4@gmail.com</span>
+            </a>
+            <a href="https://definitelykevin.deviantart.com" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
+                <i class="fab fa-deviantart text-gold text-2xl mr-3"></i>
+                <span class="text-lg text-gray-100 font-semibold">DeviantArt: @definitelykevin</span>
+            </a>
+            <a href="https://instagram.com/definitelykevin4" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
+                <i class="fab fa-instagram text-gold text-2xl mr-3"></i>
+                <span class="text-lg text-gray-100 font-semibold">Instagram: @definitelykevin4</span>
+            </a>
+            <a href="http://reddit.com/u/definitelykevin4" target="_blank" class="flex items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-200 border border-gold/50">
+                <i class="fab fa-reddit text-gold text-2xl mr-3"></i>
+                <span class="text-lg text-gray-100 font-semibold">Reddit: u/definitelykevin4</span>
+            </a>
+        </div>
+    </div>
+</section>
 
-    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-10">
-        <p>DefinitelyKevin Portfolio &copy; 2025 | All Original Works are Property of DefinitelyKevin</p>
-    </footer>
+<footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-10">
+    <p>DefinitelyKevin Portfolio &copy; 2025 | All Original Works are Property of DefinitelyKevin</p>
+</footer>
 
 </body>
 </html>
